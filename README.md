@@ -7,4 +7,20 @@ This program provides the implementation of a back-end server in charge of answe
 ![Hashtag-Text-Data-Model](Images/Hashtag-Text-Architecture.png)
 
 Since data is not replicated across the different hashtables, a request for all those Texts that are related to a given Hashtag mandatory needs to be propagated to all the hashtables before the server would be actually able to send a complete response to a user's request.
-Despite the application can be compiled for sequential execution, we injected the proper OpenMP task directives into the code in order to exploit hardware parallelism offered by the target machine. More in detail, each simulated user request matches an OpenMP task which in turn generates as many tasks as there are hashtables, then it synchronizes with these tasks through a Taskwait directive since its output depends on the outputs of the latters. Moreover, each thread belonging to the team built on top of the parallel region can process any user request currently making available for the team.
+Despite the application can be compiled for sequential execution, we injected the proper OpenMP task directives into the code in order to exploit hardware parallelism offered by the target machine. More in detail, each simulated user request matches an OpenMP task which in turn generates as many tasks as there are hashtables, then it synchronizes with these tasks through a Taskwait directive since its output depends on the outputs of the latters.
+
+![Hashtag-Text-Tasking-Model](Images/Hashtag-Text-Tasking-Model.png)
+
+Into the application folder you may find four files:
+
+1. **hashtag-text-server.c** : contains the source code of the application including data structures and the initialization/finalization routines.
+
+2. **hashtag-text-server.h** : this header file contains all the application's parameters set to the values of the default configuration. Each of these parameter (inline the code some comments provide a brief description) can be changed to setup a different configuration.
+
+3. **TextHashtag.txt** : this heavy file is read once in the initialization phase to populate data structures with Hashtag-Text pairs.
+
+4. **Makefile** : used either to compile the application (with ***make***) or to clean object files (with ***make clean***). Furthermore, two flags (commented by default) may be uncommented to enable additional features:
+
+    1. **POISSON_ARRIVAL_TIME** : when active provides an average time value (expressed in seconds) for a Poisson process distribution in order to simulate an exponential interarrival time between consecutive requests.
+    
+    2. **NEW_NODES_INSERTION** : when active enables some users requests (according to the given probability value) to be an insertion request, that is the associated task will perform the insertion of a new node into one list of one hashtable. To make it possible we rely on the *omp_lock_t* spinlocks, one per list, in order to ensure exclusive access to that list.
