@@ -24,3 +24,5 @@ Into the application folder you may find four files:
     1. **POISSON_ARRIVAL_TIME** : when active provides an average time value (expressed in seconds) for a Poisson process distribution in order to simulate an exponential interarrival time between consecutive requests.
     
     2. **NEW_NODES_INSERTION** : when active enables some users requests (according to the given probability value) to be an insertion request, that is the associated task will perform the insertion of a new node into one list of one hashtable. To make it possible we rely on the *omp_lock_t* spinlocks, one per list, in order to ensure exclusive access to that list.
+
+Additional informations about the parameters, brief descriptions and the admitted values to produce a different configuration, are all reported in the header file.
