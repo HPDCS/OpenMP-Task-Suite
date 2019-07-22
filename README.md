@@ -30,4 +30,4 @@ Into the application folder you may find four files:
     
     2. **NEW_NODES_INSERTION** : when active enables some users requests (according to the given probability value) to be an insertion request, that is the associated task will perform the insertion of a new node into one list of one hashtable. To make it possible we rely on the *omp_lock_t* spinlocks, one per list, in order to ensure exclusive access to that list.
 
-Additional informations about the parameters, brief descriptions and the admitted values to produce a different configuration, are all reported in the header file.
+Additional informations about parameters, a brief descriptions of them and the range of admitted values are reported in the header file.
