@@ -15,7 +15,7 @@ Into the application folder you may find four files:
 
 1. **hashtag-text-server.c** : contains the source code of the application including data structures and the initialization/finalization routines.
 
-2. **hashtag-text-server.h** : this header file contains all the application's parameters set to the values of the default configuration. Each of these parameter can be changed to setup a different configuration:
+2. **hashtag-text-server.h** : this header file contains all the application's parameters set to the values of the default configuration. Each of these parameters can be changed to produce a different configuration:
 
     1. **STRINGS_HT_NUMBER** : indicates how many hashtable instances to use
     2. **STRINGS_HT_BUCKETS** : indicates how many buckets each hashtable is provided with
