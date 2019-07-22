@@ -11,6 +11,10 @@ Despite the application can be compiled for sequential execution, we injected th
 
 ![Hashtag-Text-Tasking-Model](Images/Hashtag-Text-Tasking-Model.png)
 
+<img align="center" src="Images/Hashtag-Text-Tasking-Model.png" alt="Hashtag-Text-Tasking-Model">
+
+<div style="text-align:center"><img src="Images/Hashtag-Text-Tasking-Model.png" /></div>
+
 Into the application folder you may find four files:
 
 1. **hashtag-text-server.c** : contains the source code of the application including data structures and the initialization/finalization routines.
