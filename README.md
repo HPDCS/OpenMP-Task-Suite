@@ -25,10 +25,18 @@ Into the application folder you may find four files:
 
 3. **TextHashtag.txt** : this heavy file is read once in the initialization phase to populate data structures with Hashtag-Text pairs.
 
-4. **Makefile** : used either to compile the application (with ***make***) or to clean object files (with ***make clean***). Furthermore, two flags (commented by default) may be uncommented to enable additional features:
+4. **Makefile** : used either to compile the application (with ***make***) or to clean object files (with ***make clean***). Furthermore, the following flags are used to enable/disable and/or customize additional features as described below:
 
     1. **POISSON_ARRIVAL_TIME** : when active provides an average time value (expressed in seconds) for a Poisson process distribution in order to simulate an exponential interarrival time between consecutive requests.
     
     2. **NEW_NODES_INSERTION** : when active enables some users requests (according to the given probability value) to be an insertion request, that is the associated task will perform the insertion of a new node into one list of one hashtable. To make it possible we rely on the *omp_lock_t* spinlocks, one per list, in order to ensure exclusive access to that list.
+
+    3. **TIED_INSERT_REQUEST** : a value between [**tied**/**untied**] to indicate ...
+
+    4. **TIED_INSERT_HASHTABLE** : a value between [**tied**/**untied**] to indicate ...
+
+    5. **TIED_QUERY_REQUEST** : a value between [**tied**/**untied**] to indicate that the tasks representing the simulated users's requests, and associated to the function generating as many tasks as there are hashtables, must be tied or untied.
+
+    6. **TIED_QUERY_HASHTABLE** : a value between [**tied**/**untied**] to indicate that the tasks performing lookup of a particular Hashtag into a single instance of hashtable must be tied or untied.
 
 Additional informations about parameters, a brief descriptions of them and the range of admitted values are reported in the header file.
