@@ -236,9 +236,13 @@ int insert_node_into_hashtable(strings_node *node)
 
 		(*lst_addr) = nd;
 
-		if (insert_hashtag_into_requests(hashtag, hashtag_length) == 0)
 #ifdef NEW_NODES_INSERTION
+		if (insert_hashtag_into_requests(hashtag, hashtag_length) == 0)
+		{
 			insert_node_into_new_nodes(node);
+		}
+#else
+		insert_hashtag_into_requests(hashtag, hashtag_length);
 #endif
 
 		hashtag = strtok(NULL, " ");
@@ -593,7 +597,7 @@ char *** query_hashtables(char *hashtag, int priority)
 
 	for (i=0; i<STRINGS_HT_NUMBER; i++)
 	{
-		#pragma omp task untied priority(priority)
+		#pragma omp task TIED_QUERY_HASHTABLE priority(priority)
 		texts[i] = query_hashtable(hashtag, i);
 	}
 
@@ -722,7 +726,7 @@ void insert_new_node_into_hashtable(strings_node *node)
 
 		bucket = hashtag_to_bucket((const char *) hashtag);
 
-		#pragma omp task untied priority(0)
+		#pragma omp task TIED_INSERT_HASHTABLE
 		insert_new_node_into_list(sht, bucket, node);
 	}
 }
@@ -769,11 +773,11 @@ static inline int get_priority(void)
 	}
 	else if (random_0_to_1 <= (PRIORITY_1_PROBABILITY + PRIORITY_2_PROBABILITY))
 	{
-		return 2;
+		return 3;
 	}
 	else if (random_0_to_1 <= (PRIORITY_1_PROBABILITY + PRIORITY_2_PROBABILITY + PRIORITY_3_PROBABILITY))
 	{
-		return 3;
+		return 5;
 	}
 	
 	return -1;
@@ -827,7 +831,7 @@ int main(int argc, char *argv[])
 #ifdef NEW_NODES_INSERTION
 				if (((double) rand() / (double) RAND_MAX) < NEW_NODES_INSERION_PROBABILITY)
 				{
-					#pragma omp task untied priority(0)
+					#pragma omp task TIED_INSERT_REQUEST
 					insert_new_node_into_hashtable(&new_nodes[number_new_nodes]);
 
 					number_new_nodes = ((number_new_nodes + 1) % MAX_DIFFERENT_NEW_NODES);
@@ -841,8 +845,8 @@ int main(int argc, char *argv[])
 						break;
 					}
 
-					#pragma omp task priority(priority)
-					results[number_requested_hashtags] = query_hashtables(requested_hashtags[number_requested_hashtags], priority);
+					#pragma omp task TIED_QUERY_REQUEST priority(priority)
+					results[number_requested_hashtags] = query_hashtables(requested_hashtags[number_requested_hashtags], priority+1);
 
 					number_requested_hashtags = ((number_requested_hashtags + 1) % MAX_DIFFERENT_REQUESTED_HASHTAGS);
 				}
