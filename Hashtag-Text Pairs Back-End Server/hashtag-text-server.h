@@ -111,7 +111,7 @@
  * threads attempt to perform lookups and insertions within  *
  * the same list.                                            *
  *************************************************************/
-#ifdef NEW_NODES_INSERTION		/* e.g. 0.01 */
+#ifdef NEW_NODES_INSERTION					/* e.g. 0.01 */
 #define MAX_DIFFERENT_NEW_NODES				50000
 #define NEW_NODES_INSERION_PROBABILITY		NEW_NODES_INSERTION
 #endif
@@ -124,7 +124,7 @@
  * with arrival time period equal to POISSON_ARRIVAL_TIME. *
  * This value must be expressed in seconds.                *
  ***********************************************************/
-#ifdef POISSON_ARRIVAL_TIME		/* e.g. 0.000005 */
+#ifdef POISSON_ARRIVAL_TIME					/* e.g. 0.000005 */
 #define REQUEST_ARRIVALS_INTERVAL			POISSON_ARRIVAL_TIME
 #define REQUEST_ARRIVALS_RATE				(1.0 / REQUEST_ARRIVALS_INTERVAL)
 #endif
