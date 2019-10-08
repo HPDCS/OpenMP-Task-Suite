@@ -1,5 +1,5 @@
 # OpenMP-Task-Suite
-This suite is intended to provide a collection of applications that allows you to test the latest features of the OpenMP tasking implementations described in the latest versions of the OpenMP specification. In the rest of this README file are reported the minimal informations required to compile and run the relative application and a short description.
+This suite is intended to provide a collection of applications that allows to test the latest features of the OpenMP tasking implementations described only in the more recent versions of OpenMP specification. In the rest of this README file are reported the minimal informations required to compile and run the applications together with a short description of the internals.
 
 ## Hashtag-Text Back-End Server
 This program provides the implementation of a back-end server in charge of answering to simulated users requests for all those Texts held by the server itself and that are related to a particular Hashtag passed as input for the request. The server handles Hashtag-Text pairs as node items, each one connected into one of the several lists it actually maintains. In its turn, each list is associated to a particular bucket number and belongs to one of the several hashtables of which the server is equipped with. Further, each Text can be related to more than one Hashtag and the associated node may need to be connected to more than one list.
@@ -39,4 +39,4 @@ Into the application folder you may find four files:
 
     6. **TIED_QUERY_HASHTABLE** : a value between [**tied**/**untied**] to indicate that the tasks performing lookup of a particular Hashtag into a single instance of hashtable must be tied or untied.
 
-Additional informations about parameters, a brief descriptions of them and the range of admitted values are reported in the header file.
+Additional information of parameters is reported in the header file.
