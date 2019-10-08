@@ -1,7 +1,7 @@
-# OpenMP-Task-Suite
+# OpenMP Task Suite
 This suite is intended to provide a collection of applications that allow to test the latest features of the OpenMP tasking-model implementations (*e.g*, priority tasks) described only in the more recent versions of OpenMP specification. In the rest of this README file are reported the minimal informations required to compile and run the applications together with a short description of the internals.
 
-## Hashtag-Text Back-End Server
+## Hashtag-Text Service
 This program provides the implementation of a back-end server in charge of answering to simulated users requests for all those Texts held by the server itself and that are related to a particular Hashtag passed as input for the request. The server handles Hashtag-Text pairs as node items, each one connected into one of the several lists it actually maintains. In its turn, each list is associated to a particular bucket number and belongs to one of the several hashtables of which the server is equipped with. Further, each Text can be related to more than one Hashtag and the associated node may need to be connected to more than one list.
 
 ![Hashtag-Text-Data-Model](Images/Hashtag-Text-Architecture.png)
@@ -14,9 +14,9 @@ Despite the application can be compiled for sequential execution, we injected th
 
 Into the application folder you may find four files:
 
-1. **hashtag-text-server.c** : contains the source code of the application including data structures and the initialization/finalization routines.
+1. **hashtag-text-service.c** : contains the source code of the application including data structures and the initialization/finalization routines.
 
-2. **hashtag-text-server.h** : this header file contains all the application's parameters set to the values of the default configuration. Each of these parameters can be changed to produce a different configuration:
+2. **hashtag-text-service.h** : this header file contains all the application's parameters set to the values of the default configuration. Each of these parameters can be changed to produce a different configuration:
 
     1. **STRINGS_HT_NUMBER** : indicates how many hashtable instances to use
     2. **STRINGS_HT_BUCKETS** : indicates how many buckets each hashtable is provided with
