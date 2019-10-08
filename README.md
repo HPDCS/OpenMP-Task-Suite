@@ -39,4 +39,4 @@ Into the application folder you may find four files:
 
     6. **TIED_QUERY_HASHTABLE** : a value between [**tied**/**untied**] to indicate that the tasks performing lookup of a particular Hashtag into a single instance of hashtable must be tied or untied.
 
-Additional information of parameters is reported in the header file.
+Additional information of parameters are reported in the header file.
