@@ -21,7 +21,9 @@ Into the application folder you may find four files:
     1. **STRINGS_HT_NUMBER** : indicates how many hashtable instances to use
     2. **STRINGS_HT_BUCKETS** : indicates how many buckets each hashtable is provided with
     3. **REQUESTS_NUMBER** : determines the total number of user requests arriving into the server
-    4. **PRIORITY_X_PROBABILITY** : determines the probability value of having a request with priority X (3 priority levels are provided by default and the sum of their probability values must be always equal to 1.0)
+    4. **MAX_DIFFERENT_REQUESTED_HASHTAGS** : indicates how many different hashtag strings to retrieve at startup when generating the reservoir of requests that will be send at run-time
+    5. **MAX_RESULTS_PER_HASHTAG** : determines the maximum number of texts that will be retrieved from each hash table
+    6. **PRIORITY_X_PROBABILITY** : determines the probability value of having a request with priority X (3 priority levels are provided by default and the sum of their probability values must be always equal to 1.0)
 
 3. **TextHashtag.txt** : this heavy file is read once in the initialization phase to populate data structures with Hashtag-Text pairs.
 
