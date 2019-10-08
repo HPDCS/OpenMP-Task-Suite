@@ -16,15 +16,15 @@ DFLAGS+=-DTIED_QUERY_HASHTABLE=untied
 LD=gcc
 LFLAGS=-fopenmp -lm
 
-DEPS=hashtag-text-server.h
-OBJ=hashtag-text-server.o 
+DEPS=hashtag-text-service.h
+OBJ=hashtag-text-service.o 
 
 %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) $(DFLAGS) -c -o $@ $<
 
-server: $(OBJ)
+service: $(OBJ)
 	$(LD) -o $@ $^ $(LFLAGS)
 
 .PHONY: clean
 clean:
-	rm -f *.o *~ server
+	rm -f *.o *~ service
