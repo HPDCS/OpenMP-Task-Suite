@@ -596,12 +596,16 @@ char *** query_hashtables(char *hashtag, int priority)
 		return NULL;
 
 	for (i=0; i<STRINGS_HT_NUMBER; i++)
+#if MANUAL_CUT_OFF
+		texts[i] = query_hashtable(hashtag, i);
+#else
 	{
 		#pragma omp task TIED_QUERY_HASHTABLE priority(priority)
 		texts[i] = query_hashtable(hashtag, i);
 	}
 
 	#pragma omp taskwait
+#endif
 
 	return texts;
 }
@@ -726,8 +730,12 @@ void insert_new_node_into_hashtable(strings_node *node)
 
 		bucket = hashtag_to_bucket((const char *) hashtag);
 
+#if MANUAL_CUT_OFF
+		insert_new_node_into_list(sht, bucket, node);
+#else
 		#pragma omp task TIED_INSERT_HASHTABLE
 		insert_new_node_into_list(sht, bucket, node);
+#endif
 	}
 }
 #endif
