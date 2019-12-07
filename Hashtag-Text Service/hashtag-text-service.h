@@ -23,7 +23,7 @@
  * Set to 1 to print tasks completion *
  * value at runtime.                  *
  **************************************/
-#define COMPLETED_REQUESTS_MONITORING		0
+#define COMPLETED_REQUESTS_MONITORING		1
 
 
 /****************************************
@@ -71,8 +71,8 @@
  * and how many likely different Hashtags *
  * will be used to make a request.        *
  ******************************************/
-#define REQUESTS_NUMBER						100000
-#define MAX_DIFFERENT_REQUESTED_HASHTAGS	100000
+#define REQUESTS_NUMBER						400000
+#define MAX_DIFFERENT_REQUESTED_HASHTAGS	400000
 
 
 /**********************************************

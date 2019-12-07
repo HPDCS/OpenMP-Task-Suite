@@ -27,11 +27,11 @@ Into the application folder you may find four files:
 
 3. **TextHashtag.txt** : this heavy file is read once in the initialization phase to populate data structures with Hashtag-Text pairs.
 
-4. **Makefile** : used either to compile the application (with ***make***) or to clean object files (with ***make clean***). Furthermore, the following flags are used to enable/disable and/or customize additional features as described below:
+4. **Makefile** : used either to compile the application (with ***make***) or to clean object files (with ***make clean***). To run the application simply launch the executable (***./service***) from command line. Furthermore, the following flags are used to enable/disable and/or customize additional features that are described below:
 
-    1. **POISSON_ARRIVAL_TIME** : when active provides an average time value (expressed in seconds) for a Poisson process distribution in order to simulate an exponential interarrival time between consecutive requests.
+    1. **POISSON_ARRIVAL_TIME** : when active provides an average time value (expressed in seconds) for a Poisson process distribution in order to simulate an exponential interarrival time between consecutive requests (disabled by default).
     
-    2. **NEW_NODES_INSERTION** : when active enables some users requests (according to the given probability value) to be an insertion request, that is the associated task will perform the insertion of a new node into one list of one hashtable. To make it possible we rely on the *omp_lock_t* spinlocks, one per list, in order to ensure exclusive access to that list.
+    2. **NEW_NODES_INSERTION** : when active enables some users requests (according to the given probability value) to be an insertion request, that is the associated task will perform the insertion of a new node into one list of one hashtable. To make it possible we rely on the *omp_lock_t* spinlocks, one per list, in order to ensure exclusive access to that list (disabled by default).
 
     3. **TIED_INSERT_REQUEST** : a value between [**tied**/**untied**] to indicate ...
 
@@ -41,4 +41,6 @@ Into the application folder you may find four files:
 
     6. **TIED_QUERY_HASHTABLE** : a value between [**tied**/**untied**] to indicate that the tasks performing lookup of a particular Hashtag into a single instance of hashtable must be tied or untied.
 
-Additional information of parameters are reported in the header file.
+    7. **MANUAL_CUT_OFF** : when set to 1, no tasks are created in addition to the one associated to the request, resulting in a manually hand-coded cut-off strategy that prevents the application from injecting too much work into the system, *e.g.*, when the requests arrival rate is high (disabled by default).
+
+Additional information can be read inside the header file, inline alongside with the source code.
