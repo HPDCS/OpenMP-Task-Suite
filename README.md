@@ -4,13 +4,13 @@ This suite is intended to provide a collection of applications that allow to tes
 ## Hashtag-Text Service
 This program provides the implementation of a back-end server in charge of answering to simulated users requests for all those Texts held by the server itself and that are related to a particular Hashtag passed as input for the request. The server handles Hashtag-Text pairs as node items, each one connected into one of the several lists it actually maintains. In its turn, each list is associated to a particular bucket number and belongs to one of the several hashtables of which the server is equipped with. Further, each Text can be related to more than one Hashtag and the associated node may need to be connected to more than one list.
 
-![Hashtag-Text-Data-Model](Images/Hashtag-Text-Architecture.png =500x)
+![Hashtag-Text-Data-Model](Images/Hashtag-Text-Architecture.png)
 
 Since data is not replicated across the different hashtables, a request for all those Texts that are related to a given Hashtag mandatory needs to be propagated to all the hashtables before the server would be actually able to send a complete response to a user's request.
 Despite the application can be compiled for sequential execution, we injected the proper OpenMP task directives into the code in order to exploit hardware parallelism offered by the target machine. More in detail, each simulated user request matches an OpenMP task which in turn generates as many tasks as there are hashtables, then it synchronizes with these tasks through a Taskwait directive since its output depends on the outputs of the latters.
 
 
-![Hashtag-Text-Tasking-Model](Images/Hashtag-Text-Tasking-Model.png =500x)
+![Hashtag-Text-Tasking-Model](Images/Hashtag-Text-Tasking-Model.png)
 
 Into the application folder you may find four files:
 
